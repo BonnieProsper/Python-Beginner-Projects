@@ -1,48 +1,48 @@
-grade = float(input("Gimme ya grade: "))
+grade = float(input("Give me your grade: "))
 
 if grade >= 90:
     print("Its an A!")
 elif 80<=grade<=89:
-    print("BBBBB")
+    print("Its a B!")
 elif 70<=grade<=79:
     print("C")
 elif 60<=grade<=69:
     print("D")
 else:
-    print("Lowkey a failure")
+    print("This is a failing grade")
 
 grade=int(grade)
 if grade%3==0:
     if grade%5==0:
-        print("Both")
+        print("Divisible by both")
     else:
         print("Divisible by 3, not 5")
 elif grade%5==0:
     print("divisible by 5 not 3")
 else:
-    print("neither")
+    print("Divisible by neither")
 
 password = input("Password: ")
 for attempt in range(2):
     password = input("Password: ")
     if password == "python123":
-        print("GRANTED!!")
+        print("Granted!!")
         break
 else:
-    print("Ya done.")
+    print("You've had too many invalid attempts.")
 
 '''
 if password == "python123":
-    print("GRANTEED!!")
+    print("GRANTED!!")
 else:
-    password = input("Boo wrong. 1 more try: ")
+    password = input("Wrong. You have 1 more try: ")
     if password == "python123":
-        print("Grantedddd")
+        print("Granted")
     else:
-        print("Ya done.")
+        print("Too many invalid inputs.")
 '''
 
-numbers = list(map(float, input("Gimme 3 nums: ").split()))
+numbers = list(map(float, input("Give me 3 nums: ").split()))
 print(sorted(numbers))
 print(min(numbers))
 print(max(numbers))
