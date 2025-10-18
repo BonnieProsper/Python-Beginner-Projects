@@ -2,31 +2,31 @@
 num = int(input("Enter your number: "))
 if num%2==0:
     if num%3==0:
-        print(f"{num} is both even and a multiple of 3! Yahoo!")
+        print(f"{num} is both even and a multiple of 3!")
     else:
-        print(f"{num} is even but it aint a multiple of 3.")
+        print(f"{num} is even but not a multiple of 3.")
 else:
     if num%3==0:
-        print(f"{num} is a multiple of 3 but aint even.")
+        print(f"{num} is a multiple of 3 but not even.")
     else:
-        print(f"{num} is neither pookie")
+        print(f"{num} is neither")
               
-num1, num2 = map(float, input("Gimme 2 more numbers: ").split())
+num1, num2 = map(float, input("Enter 2 more numbers: ").split())
 if num >= 0 and num1>=0 and num2 >= 0:
-    print ("All pos")
+    print ("All positive.")
 elif (num>=0 and num1>=0) or (num1>=0 and num2>=0) or (num>=0 and num2>=0):
-    print("2 pos, 1 neg")
+    print("2 positive, 1 negative")
 elif num>=0 or num1>=0 or num2>=0:
-    print("1 pos")
+    print("1 positive")
 else:
-    print("None pos")
-print("Now ill do some triangle calcs")
+    print("None are positive")
+print("Now to calculate triangles.")
 tri_choice = input("Do you want me to (Y/N)")
 if tri_choice.lower() == "y":
     triangle = 0.5*num1*num2
     print(f"Area: {triangle}")
 else:
-    print("damn no need to be rude.")
+    print("Moving on.")
     line = list(map(int, input("Gimme some numbers, split using commas: ").split(',')))
     sum1 = 0
     for l in line:
