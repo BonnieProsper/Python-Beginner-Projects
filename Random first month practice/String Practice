@@ -1,0 +1,11 @@
+sentence = input("Enter sentence: ")
+print(f"\nAll caps: {sentence.upper()}")
+
+words = sentence.split()
+print(f"Word count: {len(words)}")
+
+reversed_chars = sentence[::-1]
+print(f"Reversed character: {reversed_chars}")
+
+reversed_words = " ".join(words[::-1])
+print(f"Reversed words: {reversed_words}")
