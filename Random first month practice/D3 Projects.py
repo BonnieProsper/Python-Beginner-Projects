@@ -17,15 +17,3 @@ print(f"Average: {average:.2f}")
 print(f"Largest: {largest}")
 print(f"Smallest: {smallest}")
 print(f"Nums above avg: {above_avg}")
-
-sentence = input("Enter sentence: ")
-print(f"\nAll caps: {sentence.upper()}")
-
-words = sentence.split()
-print(f"Word count: {len(words)}")
-
-reversed_chars = sentence[::-1]
-print(f"Reversed character: {reversed_chars}")
-
-reversed_words = " ".join(words[::-1])
-print(f"Reversed words: {reversed_words}")
