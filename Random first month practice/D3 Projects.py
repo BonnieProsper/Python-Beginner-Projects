@@ -29,20 +29,3 @@ print(f"Reversed character: {reversed_chars}")
 
 reversed_words = " ".join(words[::-1])
 print(f"Reversed words: {reversed_words}")
-
-import random
-secret = random.randint(1, 20)
-attempts = 0
-
-print("Number between 1 and 20...")
-
-while True:
-    guess = int(input("Guess: "))
-    attempts+=1
-    if guess < secret:
-        print("Too low")
-    elif guess > secret:
-        print("Too high")
-    else: 
-        print(f"Correct, in {attempts} tries")
-        break
