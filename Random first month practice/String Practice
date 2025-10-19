@@ -9,3 +9,23 @@ print(f"Reversed character: {reversed_chars}")
 
 reversed_words = " ".join(words[::-1])
 print(f"Reversed words: {reversed_words}")
+
+sentencetwo = input("Enter a sentence: ").lower().strip()
+words = sentencetwo.split() # splits on the spaces
+
+word_count = {} # create empty dictionary
+
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+
+print("Word counts: ")
+for word, count in word_count.items():
+    print(f"{word}: {count}")
+
+# OR 
+# from collections import Counter
+# word_count = Counter(words)
+# print(word_count)
