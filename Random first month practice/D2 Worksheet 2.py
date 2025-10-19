@@ -22,26 +22,6 @@ elif grade%5==0:
 else:
     print("Divisible by neither")
 
-password = input("Password: ")
-for attempt in range(2):
-    password = input("Password: ")
-    if password == "python123":
-        print("Granted!!")
-        break
-else:
-    print("You've had too many invalid attempts.")
-
-'''
-if password == "python123":
-    print("GRANTED!!")
-else:
-    password = input("Wrong. You have 1 more try: ")
-    if password == "python123":
-        print("Granted")
-    else:
-        print("Too many invalid inputs.")
-'''
-
 numbers = list(map(float, input("Give me 3 nums: ").split()))
 print(sorted(numbers))
 print(min(numbers))
