@@ -1,0 +1,19 @@
+def factorial(n):
+    if n==0 or n == 1:
+        return 1
+    result = 1
+    for i in range(2, n+1):
+        result *= i
+    return result 
+
+while True:
+    try:
+        num = int(input("Enter non-negative number for factorial: "))
+        if num < 0:
+            print("Error: Number must be non-negative.")
+            continue
+        print(f"{num}! = {factorial(num)}")
+        break
+    except ValueError:
+        print("Invalid input. Enter an integer.")
+
