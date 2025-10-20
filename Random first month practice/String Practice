@@ -29,3 +29,12 @@ for word, count in word_count.items():
 # from collections import Counter
 # word_count = Counter(words)
 # print(word_count)
+
+def unique_word_finder():
+    sentencethr = input("Enter a sentence: ").strip().lower()
+    words = sentencethr.split()
+    unique = set(words)
+    print("Unique words:", ", ".join(sorted(unique)))
+    print(f"Total unique words: {len(unique)}")
+
+unique_word_finder()
