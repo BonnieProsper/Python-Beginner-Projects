@@ -1,0 +1,89 @@
+import time
+
+class Task:
+    def __init__(self, name, priority, effort, deadline=None):
+        self.name = name
+        self.priority = priority
+        self.effort = effort
+        self.deadline = deadline  # Optional string "YYYY-MM-DD"
+
+    def __repr__(self):
+        dl = f", Deadline: {self.deadline}" if self.deadline else ""
+        return f"[{self.priority}] {self.name} (Effort: {self.effort}{dl})"
+
+class TaskScheduler:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self):
+        name = input("Task name: ").strip()
+        priority = int(input("Priority (1-10, 10 = highest): ").strip())
+        effort = float(input("Estimated effort (hours): ").strip())
+        deadline = input("Deadline (YYYY-MM-DD) or leave blank: ").strip()
+        deadline = deadline if deadline else None
+        self.tasks.append(Task(name, priority, effort, deadline))
+        print(f"Task '{name}' added.\n")
+
+    def list_tasks(self):
+        if not self.tasks:
+            print("No tasks.\n")
+            return
+        print("\nAll Tasks:")
+        for t in self.tasks:
+            print(" -", t)
+        print()
+
+    def remove_task(self):
+        self.list_tasks()
+        name = input("Task name to remove: ").strip()
+        for t in self.tasks:
+            if t.name == name:
+                self.tasks.remove(t)
+                print(f"Removed '{name}'.\n")
+                return
+        print("Task not found.\n")
+
+    def schedule_tasks(self):
+        if not self.tasks:
+            print("No tasks to schedule.\n")
+            return
+        print("\nScheduling tasks intelligently...\n")
+        # Sort by priority descending, then by effort ascending
+        self.tasks.sort(key=lambda t: (-t.priority, t.effort))
+
+        fatigue_limit = 4  # max hours before suggesting break
+        consecutive_effort = 0
+
+        for t in self.tasks:
+            if consecutive_effort + t.effort > fatigue_limit:
+                print("-> Take a break before next task!\n")
+                consecutive_effort = 0
+            print(f"Do task: {t}")
+            consecutive_effort += t.effort
+        print()
+
+def main():
+    scheduler = TaskScheduler()
+    while True:
+        print("""
+1. Add task
+2. Remove task
+3. List tasks
+4. Schedule tasks
+5. Exit
+""")
+        choice = input("Select option: ").strip()
+        if choice == "1":
+            scheduler.add_task()
+        elif choice == "2":
+            scheduler.remove_task()
+        elif choice == "3":
+            scheduler.list_tasks()
+        elif choice == "4":
+            scheduler.schedule_tasks()
+        elif choice == "5":
+            print("Goodbye.")
+            break
+        else:
+            print("Invalid choice.\n")
+
