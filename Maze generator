@@ -1,0 +1,45 @@
+import random
+
+class Maze:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.grid = [["#" for _ in range(width)] for _ in range(height)]
+        self.visited = set()
+
+    def display(self):
+        for row in self.grid:
+            print("".join(row))
+        print()
+
+    def neighbors(self, x, y):
+        """Return valid neighboring cells two steps away (for carving paths)."""
+        directions = [(-2, 0), (2, 0), (0, -2), (0, 2)]
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 < nx < self.width and 0 < ny < self.height:
+                yield nx, ny, dx, dy
+
+    def carve_passages_from(self, x, y):
+        """Recursive backtracking algorithm for maze generation."""
+        self.visited.add((x, y))
+        self.grid[y][x] = " "
+        directions = list(self.neighbors(x, y))
+        random.shuffle(directions)
+
+        for nx, ny, dx, dy in directions:
+            if (nx, ny) not in self.visited:
+                # carve the wall between current and next cell
+                self.grid[y + dy // 2][x + dx // 2] = " "
+                self.carve_passages_from(nx, ny)
+
+    def generate(self):
+        """Generate a maze starting from the top-left corner."""
+        self.carve_passages_from(1, 1)
+        self.grid[1][0] = "S"  # Start
+        self.grid[self.height - 2][self.width - 1] = "E"  # End
+        return self
+
+if __name__ == "__main__":
+    maze = Maze(21, 15).generate()
+    maze.display()
