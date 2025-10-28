@@ -11,7 +11,7 @@ class Maze:
         for row in self.grid:
             print("".join(row))
         print()
-
+ 
     def neighbors(self, x, y):
         """Return valid neighboring cells two steps away (for carving paths)."""
         directions = [(-2, 0), (2, 0), (0, -2), (0, 2)]
