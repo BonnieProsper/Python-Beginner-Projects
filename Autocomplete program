@@ -1,0 +1,56 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Autocomplete:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        """Insert a word into the trie."""
+        node = self.root
+        for char in word:
+            node = node.children.setdefault(char, TrieNode())
+        node.is_end_of_word = True
+
+    def _search_prefix(self, prefix):
+        """Return the node corresponding to the end of the prefix."""
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return None
+            node = node.children[char]
+        return node
+
+    def _collect_words(self, node, prefix):
+        """Recursively collect all words from this node downward."""
+        words = []
+        if node.is_end_of_word:
+            words.append(prefix)
+        for char, child in node.children.items():
+            words.extend(self._collect_words(child, prefix + char))
+        return words
+
+    def autocomplete(self, prefix):
+        """Return all words starting with the given prefix."""
+        node = self._search_prefix(prefix)
+        if not node:
+            return []
+        return self._collect_words(node, prefix)
+
+
+if __name__ == "__main__":
+    auto = Autocomplete()
+    for word in ["car", "cat", "carbon", "dog", "door", "dorm", "cart"]:
+        auto.insert(word)
+
+    while True:
+        prefix = input("\nEnter prefix: ").strip().lower()
+        if prefix == "exit":
+            break
+        suggestions = auto.autocomplete(prefix)
+        if suggestions:
+            print("Suggestions:", ", ".join(suggestions))
+        else:
+            print("No matches found.")
