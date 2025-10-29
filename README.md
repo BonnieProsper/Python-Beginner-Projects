@@ -1,2 +1,2 @@
-# Python-Beginner-Projects
+# Python-Random-Projects
 Trying out various small projects
